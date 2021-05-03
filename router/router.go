@@ -6,6 +6,8 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+
+	"github.com/zeal-haven/message-publisher/controller"
 )
 
 func Init() *chi.Mux {
@@ -30,5 +32,7 @@ func Init() *chi.Mux {
 	r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("pong"))
 	})
+
+	r.Get("/test", controller.Test)
 	return r
 }
