@@ -1,4 +1,4 @@
-module github.com/zeal-haven/persona-core
+module github.com/zeal-haven/message-publisher
 
 go 1.15
 
