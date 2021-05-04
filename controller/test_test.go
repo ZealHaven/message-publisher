@@ -16,16 +16,18 @@ func TestController(t *testing.T) {
 	defer ctrl.Finish()
 
 	var (
+		path = "/test"
 		mockWriter = mock.NewMockResponseWriter(ctrl)
 	)
 
 	r := chi.NewRouter()
-	r.Get("/test", Test)
+	r.Get(path, Test)
 
 	t.Run("test page returns test text", func(t *testing.T) {
 		mockWriter.EXPECT().WriteHeader(http.StatusOK)
+		mockWriter.EXPECT().Write([]byte("Test")).Return(0, nil)
 
-		request, _ := http.NewRequest("GET", "/ping", nil)
+		request, _ := http.NewRequest("GET", path, nil)
 		r.ServeHTTP(mockWriter, request)
 	})
 }
